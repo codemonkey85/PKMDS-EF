@@ -9,11 +9,17 @@ using System.Runtime.InteropServices;
 
 namespace PKMDS
 {
+    [StructLayout(LayoutKind.Sequential, Pack = 1, CharSet = CharSet.Unicode)]
+    [Serializable]
     public class Box
     {
         public Box()
         {
             _pokemon = new Pokemon[30];
+            for (int i = 0; i < _pokemon.Length; i++)
+            {
+                _pokemon[i] = new Pokemon();
+            }
         }
         public int BoxId { get; set; }
         public string Name { get; set; }
@@ -44,6 +50,10 @@ namespace PKMDS
             {
                 _pokemon[i] = value;
             }
+        }
+        public override string ToString()
+        {
+            return this.Name;
         }
     }
 }

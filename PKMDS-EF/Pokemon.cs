@@ -16,9 +16,17 @@ namespace PKMDS
         [MarshalAs(UnmanagedType.ByValArray, SizeConst = 232)]
         [NotMapped]
         internal byte[] data;
+
         public Pokemon()
         {
             this.data = new byte[232];
         }
+
+        public ushort species
+        {
+            get { return BitConverter.ToUInt16(data, 0x08); }
+            set { Array.Copy(BitConverter.GetBytes(value), 0, data, 0x08, 2); }
+        }
+
     }
 }

@@ -9,11 +9,17 @@ using System.Runtime.InteropServices;
 
 namespace PKMDS
 {
+    [StructLayout(LayoutKind.Sequential, Pack = 1, CharSet = CharSet.Unicode)]
+    [Serializable]
     public class StorageSystem
     {
         public StorageSystem()
         {
             _boxes = new Box[31];
+            for(int i = 0; i < _boxes.Length;i++)
+            {
+                _boxes[i] = new Box() { BoxId = i + 1, Name = string.Format("Box {0}", i + 1) };
+            }
         }
         private Box[] _boxes { get; set; }
         [NotMapped]
